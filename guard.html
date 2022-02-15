@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <title> A King's Decisions </title>
+        <link rel="icon" href="assets/crown.png">
+        <link rel="stylesheet" href="styles/bootstrap.min.css">
+        <link rel="stylesheet" href="styles/styles.css">
+        <link href="https://fonts.googleapis.com/css2?family=Gideon+Roman&family=Quintessential&display=swap" rel="stylesheet">
+    </head>
+    <body class="text-light bg-dark mt-4">
+        <div class="sceneContainer">
+            <h1 class="sceneTitle">Guard</h1>
+            <hr>
+        
+            <div class="sceneParagraph">
+                <p>
+                    The guard is leaning up against a wall right outside of the dungeon's door. You call to him to get 
+                    his attention. He grunts and lazily walks over to you. 
+                </p>
+                <p>
+                    "What do you want?", he asks, clearly annoyed.
+                </p>
+                <p id="response"></p>
+                <p id="response2"></p>
+                <p id="response3"></p>
+            </div>
+
+            <div id="buttons">
+                <div id="buttonContainer">
+                    <a class="btn btn-outline-secondary text-light sceneButton" onclick="guardResponse()" id="button">
+                        "You got a price?"
+                    </a>
+                </div>
+                <div>
+                    <a class="btn btn-outline-secondary text-light sceneButton" href="wife.html" id="wife">
+                        Talk to your wife, Alice.
+                    </a>
+                </div>
+                <div>
+                    <a class="btn btn-outline-secondary text-light sceneButton" href="cells.html" id="cells">
+                        Look at the cells.
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <script>
+            wife.href += location.search;
+            cells.href += location.search;
+            var queryString = new URLSearchParams(location.search);
+            var gold = +queryString.get("gold");
+            var morality = +queryString.get("morality");
+
+            function guardResponse(){
+                response.innerHTML = `"I'm a mercenary. I always got a price. But you don't got any money in there, so... 
+                anythin else?", he says.`;
+                if (gold > 0){
+                    button.innerHTML = `Show him the hundred gold you found.`;
+                    button.onclick = guardResponse2;
+                } else{
+                    buttonContainer.innerHTML = ``;
+                }
+            }
+
+            function guardResponse2(){
+                response2.innerHTML = `His face lights up. "Well, well, well. That kind of money
+                can get you a very easy escape."`;
+                button.onclick = givePayment;
+                button.innerHTML = `Give him the gold.`;
+            }
+
+            function givePayment(){
+                response3.innerHTML = `"Pleasure doin business with ya.", he says. After counting the money for a second or
+                two, he opens the dungeon door and shows you and your family out.`;
+                queryString.set("gold", 0)
+                buttons.innerHTML = `<div class="sceneParagraph"><p>You walk through the dungeon halls and find some of your men locked up in other parts
+                of the dungeon. Letting them out might be risky. You could get caught. What do you do?</p>
+                <div><a class="btn btn-outline-success text-light sceneButton" onclick="letThemOut()">Let them out.</a></div>
+                <a class="btn btn-outline-danger text-light sceneButton" onclick="leaveThem()">Leave them.</a>`;
+            } 
+
+            function letThemOut(){
+                queryString.set("morality", morality+1);
+                buttons.innerHTML = `<div class="sceneParagraph"><p>You let them out and you all head out of the dungeon.</p></div>
+                <a  class="btn btn-outline-secondary text-light sceneButton" href="end.html?${queryString}">Head out.</a>`;
+            } 
+
+            function leaveThem(){
+                queryString.set("morality", morality-1);
+                buttons.innerHTML = `<div class="sceneParagraph"><p>You leave them and only you and your family leave the dungeon.</p></div>
+                <a class="btn btn-outline-secondary text-light sceneButton" href="end.html?${queryString}">Head out.</a>`;
+            }
+        </script>
+        <script src="scripts/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

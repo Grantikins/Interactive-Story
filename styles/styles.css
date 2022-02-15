@@ -1,0 +1,21 @@
+
+.sceneTitle{
+    font-family: 'Gideon Roman', cursive;
+    font-size: 40px;
+}
+
+.sceneParagraph{
+    font-family: 'Quintessential', cursive;
+    font-size: 20px;
+    padding-block: 10px;
+}
+
+.sceneButton{
+    font-family: 'Gideon Roman', cursive;
+    margin-bottom: 5px;
+}
+
+.sceneContainer{
+    margin-inline: 150px;
+}
+

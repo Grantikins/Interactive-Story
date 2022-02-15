@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <title> A King's Decisions </title>
+        <link rel="icon" href="assets/crown.png">
+        <link rel="stylesheet" href="styles/bootstrap.min.css">
+        <link rel="stylesheet" href="styles/styles.css">
+        <link href="https://fonts.googleapis.com/css2?family=Gideon+Roman&family=Quintessential&display=swap" rel="stylesheet">
+    </head>
+    <body class="text-light bg-dark mt-4">
+        <div class="sceneContainer">
+            <h1 class="sceneTitle">Dungeon</h1>
+            <hr>
+
+            <div class="sceneParagraph">
+                <p>
+                    You have been thrown in the castle's dungeon. A man comes down with a possy of soldiers at his back.
+                    He is wearing armor and clothes similar to that of the man at the castle walls. His presence can be felt.
+                    This man is feared, and he himself knows this. He walks straight up to the dungeon and says,
+                </p>
+                <p>
+                    "I am the leader of this mercenary party. The man at the base of the castle walls was one of my few diplomats.
+                    You are a valuable lord. Not only will I be paid for your army's defeat, but I will hold you and your family
+                    for ransom. Do please stay alive down here, and don't try anything you'll regret."
+                </p>
+                <p>
+                    Before you can say anything, he quickly makes his exit. A single guard stays to stand watch over you. Your
+                    family is here with you. You have to try something...
+                </p>
+            </div>
+
+            <div>
+                <a class="btn btn-outline-secondary text-light sceneButton" href="wife.html" id="wife">
+                    Talk to your wife, Alice.
+                </a>
+            </div>
+            <div>
+                <a class="btn btn-outline-secondary text-light sceneButton" href="cells.html" id="cells">
+                    Look around the cells.
+                </a>
+            </div>
+            <div>
+                <a class="btn btn-outline-secondary text-light sceneButton" href="guard.html" id="guard">
+                    Try talking to the guard.
+                </a>
+            </div>
+        </div>
+    </body>
+
+    <script>
+        wife.href += location.search;
+        guard.href += location.search;
+        cells.href += location.search;
+    </script>
+    <script src="scripts/bootstrap.bundle.min.js"></script>
+</html>

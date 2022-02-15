@@ -1,0 +1,97 @@
+<html>
+    <head>
+        <title> A King's Decisions </title>
+        <link rel="icon" href="assets/crown.png">
+        <link rel="stylesheet" href="styles/bootstrap.min.css">
+        <link rel="stylesheet" href="styles/styles.css">
+        <link href="https://fonts.googleapis.com/css2?family=Gideon+Roman&family=Quintessential&display=swap" rel="stylesheet">
+    </head>
+    <body class="text-light bg-dark mt-4">
+        <div class="sceneContainer">
+            <h1 class="sceneTitle"> Castle Wall </h1>
+            <hr>
+
+            <div class="sceneParagraph">
+                <p>
+                    You make it to the castle wall, and observe the army approaching the walls. From high up, you can make out that they seem to be some mercenaries, and they certainly
+                    outnumber you. You and your men are in no condition to win such a fight, but nevertheless, you prepare. After a few frantic minutes, a man walks up to the castle walls.
+                    He is from the outside army, leisurely strolling towards the castle. Your men draw their bows, ready to make the first move. 
+                </p>
+                <p>
+                    "Where is the leader of this fine bunch?", says the man.
+                </p>
+                <p id="observation"></p>
+                <p id="dialogue"></p>
+                <p id="decision"></p>
+            </div>
+
+            <div>
+                <a class="btn btn-outline-secondary text-light sceneButton" onclick="progressDialogue()" id="dialogueButton">
+                    "What do you want?"
+                </a>
+            </div>
+            <div id="observe">
+                <a class="btn btn-outline-secondary text-light sceneButton" onclick="observeMan()" id="observeButton">
+                    Observe the man some more.
+                </a>
+            </div>
+        </div>
+
+        <script>
+            var morality = 0;
+
+            function progressDialogue(){
+                dialogue.innerHTML = `<p>The man looks in your direction and begins to speak,
+                "Hello good nobleman. I am here on the behalf of your enemies. I was told to reinforce the troops here, but it seems that I
+                am a tad late for that. Let's cut a deal. You forfeit your arms, leave the castle and never return. In exchange, no more blood will be spilt and you
+                keep your lives. I believe it is fair and no one has to know. You live; We're payed. Easy... Deal?"`
+                observeButton.onclick = fire;
+                observeButton.innerHTML = `Order your archers to fire!`;
+                observeButton.classList.remove("btn-outline-secondary");
+                observeButton.classList.add("btn-outline-danger");
+                dialogueButton.onclick = deal;
+                dialogueButton.innerHTML = `"Fine... deal."`;
+                dialogueButton.classList.remove("btn-outline-secondary");
+                dialogueButton.classList.add("btn-outline-success");
+            }
+
+            function observeMan(){
+                observation.innerHTML = `The man seems confident and walks prominently just outside of the castle walls. He strolls around as if he is waiting on a discussion. 
+                Strange... considering there are bows fixed upon him. However, under the cirumstances you should probably talk to him. But then again, you could just order him
+                dead. He has taken a great risk coming so close to the walls with no protection. Do you call for your archers to fire?`;
+                observeButton.onclick = fire;
+                observeButton.innerHTML = `"ARCHERS, FIRE!!"`;
+                observeButton.classList.remove("btn-outline-secondary");
+                observeButton.classList.add("btn-outline-danger");
+            }
+
+            function deal(){
+                morality += 1;
+                decision.innerHTML = `You tell Barclay to get the troops ready to march as fast as he can. Meanwhile, you collect your family from the inner castle. As you
+                and your party start marching out of the castle, the opposing army starts firing! They have broken their word and now your men are surrounded, outnumbered and
+                hopelessly fighting for their lives. You hold your family close so that your armor can keep them safe. You attempt to flee but get caught by cavalry that run you down.
+                As a desperate attempt to save you and your loved ones, Barclay throws himself in front of the cavalry and gets trampled. His sacrifice stuns you for a moment and before
+                you can react, the cavalrymen get off of their horses and take you and your family prisoner.`;
+                moveOn();
+            }
+
+            function fire(){
+                morality -= 1;
+                decision.innerHTML = `You command your archers to fire! They make short work of the overconfident diplomat! His army rushes the walls, but it was no contest.
+                They far outnumbered you, your troops were very tired, and they made short work of you. As the chaos unfolds inside of the walls, you attempt to gather your family
+                to make an escape. But before you could do so, a men identify you and surround you. Barclay rushed in valiantly to defend you and, in doing so, was stabbed by one of the
+                men. After seeing him fall, you become paralyzed for just a moment. Before you had time to react, the men took you and your family prisoner`;
+                moveOn();
+            }
+
+            function moveOn(){
+                dialogueButton.classList.remove("btn-outline-success");
+                dialogueButton.classList.add("btn-outline-secondary");
+                dialogueButton.innerHTML = "They will pay for this!";
+                dialogueButton.onclick = function() {dialogueButton.href = `dungeon.html?morality=${morality}`};
+                observe.innerHTML = "";
+            }   
+        </script>
+        <script src="scripts/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

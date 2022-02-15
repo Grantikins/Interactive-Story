@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <title> A King's Decisions </title>
+        <link rel="icon" href="assets/crown.png">
+        <link rel="stylesheet" href="styles/bootstrap.min.css">
+        <link rel="stylesheet" href="styles/styles.css">
+        <link href="https://fonts.googleapis.com/css2?family=Gideon+Roman&family=Quintessential&display=swap" rel="stylesheet">
+    </head>
+    <body class="text-light bg-dark mt-4">
+        <div class="sceneContainer">
+            <h1 class="sceneTitle">Dungeon - Cells</h1>
+            <hr>
+
+            <div class="sceneParagraph">
+                <p id="infoParagraph"> 
+                    There are two more cells that you have access to. Do you check them out?
+                </p>
+                <p id="cellToSearch"></p>
+            </div>
+    
+            <div>
+                <a class="btn btn-outline-secondary text-light sceneButton" onclick="openCell1()" id="firstButton">
+                    Look around in the first cell.
+                </a>
+            </div>
+            <div>
+                <a class="btn btn-outline-secondary text-light sceneButton" onclick="openCell2()" id="secondButton">
+                    Look around in the second cell.
+                </a>
+            </div>
+            <div>
+                <a class="btn btn-outline-secondary text-light sceneButton" href="wife.html" id="wife">
+                    Talk to your wife, Alice.
+                </a>
+            </div>
+            <div>
+                <a class="btn btn-outline-secondary text-light sceneButton" href="guard.html" id="guard">
+                    Try talking to the guard.
+                </a>
+            </div>
+    
+        </div>
+
+        <script>
+            wife.href += location.search;
+            guard.href += location.search;
+
+            function openCell1(){
+                cellToSearch.innerHTML = `The first cell is just like the others. It's mostly empty, but having a closer inspection reveals some old bread
+                on top of an otherwise barren table. It's old, but it's still good to eat. Take it?`;
+                firstButton.innerHTML = `Take the bread.`;
+                firstButton.onclick = function(){
+                    if(!location.search.includes("bread")) {
+                        infoParagraph.innerHTML = `You got some bread!`;
+                        wife.href += "&bread=1";;
+                        guard.herf += "&bread=1";
+                    }
+                }
+                secondButton.innerHTML = `Return to your cell.`;
+                secondButton.onclick = reset;
+            }
+
+            function openCell2(){
+                cellToSearch.innerHTML = `The second cell has a lot of broken down furniture. Some banners on the wall cover a large,
+                protruding slab of stone brick. "What is this?", you wonder.`;
+                if(!location.search.includes("info=1")) {
+                    firstButton.onclick = function(){return}
+                    firstButton.innerHTML = `It's probably nothing.`;
+                }
+                else {
+                    firstButton.onclick = function(){
+                        if(!location.search.includes("gold")) {
+                            infoParagraph.innerHTML = `You found 100 gold!`;
+                            wife.href += "&gold=100";
+                            guard.herf += "&gold=100";
+                        }
+                    }
+                    firstButton.innerHTML = `Push the slab as if it were a button.`;
+                }
+                secondButton.innerHTML = `Return to your cell.`;
+                secondButton.onclick = reset;
+            }
+
+            function reset(){
+                infoParagraph.innerHTML = `There are two more cells that you have access to. Do you check them out?`;
+                cellToSearch.innerHTML = ``;
+                firstButton.innerHTML = `Look around in the first cell.`;
+                firstButton.onclick = openCell1;
+                secondButton.innerHTML = `Look around in the second cell.`;
+                secondButton.onclick = openCell2;
+            }
+
+        </script>
+        <script src="scripts/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

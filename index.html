@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title> A King's Decisions </title>
+        <link rel="icon" href="assets/crown.png">
+        <link rel="stylesheet" href="styles/bootstrap.min.css">
+        <link rel="stylesheet" href="styles/styles.css">
+        <link href="https://fonts.googleapis.com/css2?family=Gideon+Roman&family=Quintessential&display=swap" rel="stylesheet">
+    </head>
+    <body class="text-light bg-dark mt-4">       
+    
+        <div class="sceneContainer">
+            <h1 class="sceneTitle"> Captured Castle </h1>
+            <hr>
+            <div>
+                <p class="sceneParagraph"> 
+                    You find yourself inside of a muddy, death-ridden castle. You have just won a major battle by capturing this castle for your king. Although victory is yours, you and your bannermen are 
+                    tired and severley wounded. Covered in mud and blood, your troops try their best to clean up, heal the wounded, and rest.
+                </p>
+                
+                <p class="" id="nextParagraph"></p>
+                
+                <div id="button">
+                    <a onclick="next()" class="btn btn-outline-secondary text-light sceneButton">
+                        At least we won...
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function next(){
+                nextParagraph.classList.add("sceneParagraph");
+                nextParagraph.innerHTML = "This is a grim sight especially to your family, who, at the behest of the king, is here with you.";
+                button.innerHTML = `<a href="barclayDialogue.html" class="btn btn-outline-secondary text-light sceneButton">
+                        Speak to your second in command, Barclay.
+                    </a>`;
+            }
+        </script>
+        <script src="scripts/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

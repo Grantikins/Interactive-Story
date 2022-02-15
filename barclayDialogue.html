@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title> A King's Decisions </title>
+        <link rel="icon" href="assets/crown.png">
+        <link rel="stylesheet" href="styles/bootstrap.min.css">
+        <link rel="stylesheet" href="styles/styles.css">
+        <link href="https://fonts.googleapis.com/css2?family=Gideon+Roman&family=Quintessential&display=swap" rel="stylesheet">
+    </head>
+    <body class="text-light bg-dark mt-4">
+        <div class="sceneContainer">
+            <h1 class="sceneTitle"> Barclay </h1>
+            <hr>
+            <div class="sceneParagraph" id="dialogueContainer">
+                <p id="dialogue">
+                    "Hail my lord."
+                </p>
+            </div>
+
+            <a class="btn btn-outline-secondary text-light sceneButton" onclick="progressDialogue()" id="response">
+                "Give me a report."
+            </a>
+        </div>
+        <script>
+
+            function progressDialogue(){
+                dialogue.innerHTML = `"The troops are struggling. This was a tough fight, and it may be a tougher recovery. The scouts indicate a head count of nearly 250 troops remaining with
+                about 80 or so who are injured."`;
+                response.innerHTML = `"Alright, let's..."`;
+                response.onclick = progressToArmyEvent;
+            }
+
+            function progressToArmyEvent(){
+                dialogueContainer.innerHTML = `<p class="sceneParagraph">You hear a yell in the distance, from on top the castle's walls.</p>
+                <p class="sceneParagraph">"ARMY!! An army approaches!", says one of your soldiers.</p>
+                <p class="sceneParagraph">A horn sounds. You recognize it as the war horn, sounding the troops to prepare themselves. 
+                You don't know how there could possibly be an enemy army here so soon, but you must take action. You dawn your armor, unsheathe your sword, and head for the wall.`;
+                response.innerHTML = `"Come Barclay. Let's go."`;
+                response.onclick = function() {response.href = "fight.html"};
+            }
+        </script>
+        <script src="scripts/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

@@ -1,0 +1,112 @@
+<html>
+    <head>
+        <title> A King's Decisions </title>
+        <link rel="icon" href="assets/crown.png">
+        <link rel="stylesheet" href="styles/bootstrap.min.css">
+        <link rel="stylesheet" href="styles/styles.css">
+        <link href="https://fonts.googleapis.com/css2?family=Gideon+Roman&family=Quintessential&display=swap" rel="stylesheet">
+    </head>
+    <body class="text-light bg-dark mt-4" onpageshow="writeEverything()">
+        <div class="sceneContainer">
+            <h1 class="sceneTitle">Dungeon - Wife</h1>
+            <hr>
+
+            <div id="subContainer">
+                <div class="sceneParagraph">
+                    <p>
+                        "My love, please get us out of here. We need our freedom back.", says Alice.
+                    </p>
+                    <p id="food"></p>
+                    <p id="info"></p>
+                </div>
+    
+                <div id="firstButton">
+                    <a class="btn btn-outline-secondary text-light sceneButton" onclick="askForFood()" id="button">
+                        "Is there anything I can do now?"
+                    </a>
+                </div>
+                <div id="secondButton"></div>
+            </div>
+        </div>
+
+        <script>
+            var queryString = new URLSearchParams(location.search);
+            var goldInfo = +queryString.get("info");
+            var bread = +queryString.get("bread");
+            var gold = +queryString.get("gold");
+            var morality = +queryString.get("morality")
+
+            function askForFood(){
+                food.innerHTML = `"Our children are hungry. If you can find them something to eat, that would be great."`;
+                button.innerHTML = `I'll look around.`;
+                button.onclick = giveInfo;
+            }
+
+            function giveInfo(){
+                info.innerHTML = `"Oh and one last thing, love", she looks over your shoulder to see if the guard is listening. "From my time around the various courts of the land, I
+                lived here for a time. I know a thing or two about this castle. In particular, I know that there is a secret stash of gold hidden here in the dungeon. I don't know why 
+                the previous lord decided to hide gold down here, but I have heard this from a reliable source. Supposedly, it is hidden behind a secret wall with a button."`;
+                goldInfo = 1;
+                firstButton.innerHTML = `<a class="btn btn-outline-secondary text-light sceneButton" href="cells.html${location.search}&info=1">
+                    Look around the cells.
+                </a>`
+                secondButton.innerHTML = `<a class="btn btn-outline-secondary text-light sceneButton" href="guard.html${location.search}&info=1"">
+                    Talk to the guard.
+                </a>`;
+            }
+
+            function writeEverything(){
+                if (goldInfo >= 1 && bread >= 1){
+                    subContainer.innerHTML = `<div class="sceneParagraph"><p>
+                    "My love, please get us out of here. We need our freedom back.", says Alice.
+                    </p>
+                    <p>"Our children are hungry. If you can find them something to eat, that would be great."</p>
+                    <p>"Oh and one last thing, love", she looks over your shoulder to see if the guard is listening. "From my time around the various courts of the land, I
+                        lived here for a time. I know a thing or two about this castle. In particular, I know that there is a secret stash of gold hidden here in the dungeon. I don't know why 
+                        the previous lord decided to hide gold down here, but I have heard this from a reliable source. Supposedly, it is hidden behind a secret wall with a button."</p>
+                    </div>
+                    <div><a class="btn btn-outline-secondary text-light sceneButton" href="cells.html${location.search}">
+                        Look around the cells.
+                    </a></div>
+                    <div><a class="btn btn-outline-secondary text-light sceneButton" href="guard.html${location.search}"">
+                        Talk to the guard.
+                    </a></div>
+                    <div><a class="btn btn-outline-success text-light sceneButton" onclick="giveBread()">
+                        Give the bread to your children.
+                    </a></div>
+                    <div><a class="btn btn-outline-danger text-light sceneButton" onclick="eatBread()">
+                        Eat the bread.
+                    </a></div>`;
+                } else if(goldInfo >= 1){
+                    subContainer.innerHTML = `<div class="sceneParagraph"><p>
+                    "My love, please get us out of here. We need our freedom back.", says Alice.
+                    </p>
+                    <p>"Our children are hungry. If you can find them something to eat, that would be great."</p>
+                    <p>"Oh and one last thing, love", she looks over your shoulder to see if the guard is listening. "From my time around the various courts of the land, I
+                        lived here for a time. I know a thing or two about this castle. In particular, I know that there is a secret stash of gold hidden here in the dungeon. I don't know why 
+                        the previous lord decided to hide gold down here, but I have heard this from a reliable source. Supposedly, it is hidden behind a secret wall with a button."</p>
+                    </div>
+                    <div><a class="btn btn-outline-secondary text-light sceneButton" href="cells.html${location.search}">
+                        Look around the cells.
+                    </a></div>
+                    <div><a class="btn btn-outline-secondary text-light sceneButton" href="guard.html${location.search}"">
+                        Talk to the guard.
+                    </a></div>`;
+                }
+            }
+
+            function giveBread(){
+                queryString.set("morality", morality+1);
+                queryString.set("bread", bread-1);
+                location.search = queryString;
+            }
+
+            function eatBread(){
+                queryString.set("morality", morality-1);
+                queryString.set("bread", bread-1);
+                location.search = queryString;
+            }
+        </script>
+        <script src="scripts/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title> A King's Decisions </title>
+        <link rel="icon" href="assets/crown.png">
+        <link rel="stylesheet" href="styles/bootstrap.min.css">
+        <link rel="stylesheet" href="styles/styles.css">
+        <link href="https://fonts.googleapis.com/css2?family=Gideon+Roman&family=Quintessential&display=swap" rel="stylesheet">
+    </head>
+    <body class="text-light bg-dark mt-4" onpageshow="writeCorrectParagraph()">
+        <div class="sceneContainer">
+            <h1>Outside the castle</h1>
+            <hr>
+
+            <div class="sceneParagraph">
+                <p id="paragraph"></p>
+            </div>
+        </div>
+
+        <script>
+            var queryString = new URLSearchParams(location.search);
+            var morality = +queryString.get("morality");
+
+            function writeCorrectParagraph(){
+                if(morality > 0){
+                    paragraph.innerHTML = `You manage to escape with everyone you love and they all love you back. You
+                    are an honorable and just king. You continue to reign, loved by all.`;
+                } else if(morality == 0){
+                    paragraph.innerHTML = `You strike a balance between right and wrong. Sometimes an iron fist is needed, 
+                    but sometimes you need to give the people what they want. You continue to reign, liked by some.`;
+                } else{
+                    paragraph.innerHTML = `You are a hard and evil king. Everyone either fears you or hates you. Maybe both...
+                    You continue to rule, hated by all.`;
+                }
+            }
+        </script>
+        <script src="scripts/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

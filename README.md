@@ -1,1 +1,1 @@
-# Interactive-Story
+This is a small interactive story that was made for my Advanceed Web Development Course. It's not much. It uses basic html, css, and javascript.
